@@ -339,8 +339,6 @@ ${error.source || 'Not available'}
   }
 
   generateCommitMessage() {
-    const timestamp = new Date().toISOString();
-    
     return `fix(lighthouse): resolve console errors from audit
 
 Auto-fixed console errors identified by Lighthouse best practices audit:
@@ -496,7 +494,7 @@ ${this.issues.map(i => `| #${i.number} | ${i.errorType} | ${i.severity} | [View 
 
       // Step 5: Commit fixes
       if (this.fixes.length > 0) {
-        const commitMessage = await this.commitFixes();
+        await this.commitFixes();
         console.log('\n✅ Commit message prepared');
       }
 
