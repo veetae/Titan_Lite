@@ -1,0 +1,25 @@
+{
+  "name": "lighthouse-console-analyzer",
+  "version": "1.0.0",
+  "description": "Lighthouse console error analyzer for healthcare applications",
+  "main": "lighthouse-console-analyzer.js",
+  "scripts": {
+    "analyze": "node lighthouse-console-analyzer.js",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "lighthouse": "^11.0.0",
+    "chrome-launcher": "^1.0.0",
+    "@octokit/rest": "^20.0.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "lighthouse",
+    "console-errors",
+    "healthcare",
+    "hipaa",
+    "audit"
+  ],
+  "author": "Titan_Lite Team",
+  "license": "MIT"
+}
