@@ -316,7 +316,7 @@ ${error.source || 'Not available'}
 
   extractFileName(source) {
     if (!source) return 'Unknown';
-    const match = source.match(/([^\/]+\.(js|ts|jsx|tsx)):/);
+    const match = source.match(/([^/]+\.(js|ts|jsx|tsx)):/);
     return match ? match[1] : source.split('/').pop();
   }
 

@@ -8,11 +8,13 @@
     "test": "echo \"No tests yet\""
   },
   "dependencies": {
-    "lighthouse": "^11.0.0",
+    "@octokit/rest": "^20.0.0",
     "chrome-launcher": "^1.0.0",
-    "@octokit/rest": "^20.0.0"
+    "lighthouse": "^11.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^10.0.0"
+  },
   "keywords": [
     "lighthouse",
     "console-errors",
