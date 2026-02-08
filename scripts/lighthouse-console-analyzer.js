@@ -103,10 +103,9 @@ class LighthouseConsoleAnalyzer {
       });
     }
 
-    // Check for console.log warnings
-    if (audits['no-unload-listeners'] || audits['deprecations']) {
-      // Additional checks for development artifacts
-    }
+    // Check for additional audit types that may be added in future
+    // Note: Lighthouse audits 'no-unload-listeners' and 'deprecations' 
+    // could be processed here for enhanced error detection
 
     this.errors = errors;
     console.log(`Found ${errors.length} console errors`);
@@ -181,19 +180,19 @@ class LighthouseConsoleAnalyzer {
     return fix;
   }
 
-  async removeConsoleLogs(fix) {
+  removeConsoleLogs(fix) {
     // Implementation: Remove console.log statements
     fix.description = `Removed console.log statement at line ${fix.line}`;
     fix.marker = `<!-- lighthouse-console-cleaned: ${this.runId} -->`;
   }
 
-  async addNullCheck(fix) {
+  addNullCheck(fix) {
     // Implementation: Add null/undefined checks
     fix.description = `Added null check at line ${fix.line}`;
     fix.marker = `<!-- lighthouse-null-check: ${this.runId} -->`;
   }
 
-  async addErrorBoundary(fix) {
+  addErrorBoundary(fix) {
     // Implementation: Add error boundary
     fix.description = `Added error boundary at line ${fix.line}`;
     fix.marker = `<!-- lighthouse-error-boundary: ${this.runId} -->`;
