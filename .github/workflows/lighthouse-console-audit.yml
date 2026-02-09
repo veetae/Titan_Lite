@@ -44,7 +44,8 @@ jobs:
       - name: Install Lighthouse dependencies
         run: |
           npm install -g lighthouse chrome-launcher @octokit/rest
-          npm install --save-dev lighthouse chrome-launcher @octokit/rest
+          # Install locally without modifying package.json/package-lock.json
+          npm install --no-save lighthouse chrome-launcher @octokit/rest
       
       - name: Determine target URL
         id: target-url
