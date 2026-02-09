@@ -35,6 +35,20 @@ const ErrorCategory = {
 
 class LighthouseConsoleAnalyzer {
   constructor(url, githubToken, repoOwner, repoName, prNumber) {
+    // Validate inputs
+    if (!url || typeof url !== 'string') {
+      throw new Error('Valid URL is required');
+    }
+    if (!githubToken || typeof githubToken !== 'string') {
+      throw new Error('Valid GitHub token is required');
+    }
+    if (!repoOwner || typeof repoOwner !== 'string') {
+      throw new Error('Valid repository owner is required');
+    }
+    if (!repoName || typeof repoName !== 'string') {
+      throw new Error('Valid repository name is required');
+    }
+
     this.url = url;
     this.octokit = new Octokit({ auth: githubToken });
     this.repoOwner = repoOwner;
@@ -74,7 +88,8 @@ class LighthouseConsoleAnalyzer {
       return runnerResult.lhr;
     } catch (error) {
       await chrome.kill();
-      throw error;
+      console.error('Lighthouse audit failed:', error.message);
+      throw new Error(`Lighthouse audit failed: ${error.message}`, { cause: error });
     }
   }
 
@@ -231,7 +246,7 @@ class LighthouseConsoleAnalyzer {
       return issue.data;
     } catch (error) {
       console.error('❌ Failed to create issue:', error.message);
-      throw error;
+      throw new Error(`Failed to create GitHub issue: ${error.message}`, { cause: error });
     }
   }
 
@@ -406,7 +421,7 @@ Co-authored-by: veetae <vert107@gmail.com>`;
       }
     } catch (error) {
       console.error('❌ Failed to update PR:', error.message);
-      throw error;
+      throw new Error(`Failed to update PR comment: ${error.message}`, { cause: error });
     }
   }
 
@@ -506,8 +521,8 @@ ${this.issues.map(i => `| #${i.number} | ${i.errorType} | ${i.severity} | [View 
       console.log(`   - Issues created: ${this.issues.length}`);
 
     } catch (error) {
-      console.error('❌ Analysis failed:', error);
-      throw error;
+      console.error('❌ Analysis failed:', error.message);
+      throw new Error(`Analysis failed: ${error.message}`, { cause: error });
     }
   }
 }
@@ -551,7 +566,7 @@ async function main() {
 // Run if called directly
 if (require.main === module) {
   main().catch(error => {
-    console.error('Fatal error:', error);
+    console.error('Fatal error:', error.message || error);
     process.exit(1);
   });
 }
