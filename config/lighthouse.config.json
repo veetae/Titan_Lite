@@ -1,0 +1,35 @@
+{
+  "lighthouse": {
+    "categories": ["best-practices", "accessibility", "performance"],
+    "audits": ["errors-in-console", "no-console-logs"],
+    "throttling": "mobile3G",
+    "output": ["json", "html"],
+    "onlyCategories": ["best-practices"],
+    "formFactor": "desktop",
+    "screenEmulation": {
+      "mobile": false,
+      "width": 1350,
+      "height": 940,
+      "deviceScaleFactor": 1,
+      "disabled": false
+    }
+  },
+  "autofix": {
+    "enabled": true,
+    "categories": ["console-logs", "null-checks", "error-boundaries"],
+    "maxChangesPerRun": 10,
+    "dryRun": false
+  },
+  "issueCreation": {
+    "enabled": true,
+    "labels": ["lighthouse", "console-error", "needs-investigation", "healthcare"],
+    "assignees": [],
+    "autoAssign": true
+  },
+  "healthcareCompliance": {
+    "hipaaAudit": true,
+    "requireSecureContext": true,
+    "checkMixedContent": true,
+    "validateErrorExposure": true
+  }
+}
