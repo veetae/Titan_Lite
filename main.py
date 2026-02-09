@@ -2,11 +2,9 @@ import sys
 from agents.icd_coder import query_icd_codes
 from agents.lab_summary import fetch_lab_summary
 from agents.soap_enrich import enrich_soap_note
-from agents.mcp_bridge import orchestrate_agent
 from agents.dispatcher import auto_route
-content = row["content_md"] or ""
-polished = polish(content)
-
+# Note: mcp_bridge not yet implemented
+# from agents.mcp_bridge import orchestrate_agent
 
 payload = {
     "patient_id": "12345",
@@ -45,9 +43,9 @@ elif task == "soap_enrich":
     print(enrich_soap_note(payload))
 
 elif task == "mcp_icd":
-    print("🧠 MCP Orchestrated ICD Lookup:")
-    result = orchestrate_agent("icd_lookup", {"patient_id": payload["patient_id"], "query": payload["query"]})
-    print(result)
+    print("⚠️  MCP bridge not yet implemented")
+    # result = orchestrate_agent("icd_lookup", {"patient_id": payload["patient_id"], "query": payload["query"]})
+    # print(result)
 
 else:
     print("⚠️ Unknown task. Use one of: icd_lookup, lab_summary, soap_enrich, mcp_icd")

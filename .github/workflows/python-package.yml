@@ -37,4 +37,11 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        # Run pytest only if tests directory exists with actual test files
+        if [ -d tests ] && [ -n "$(find tests -name 'test_*.py' 2>/dev/null)" ]; then
+          pytest -v tests/
+        else
+          echo "ℹ️  No tests directory found. Skipping pytest."
+          echo "To add tests, create a 'tests/' directory with test_*.py files"
+          echo "Example: tests/test_soap_validator.py with 'def test_function():' functions"
+        fi

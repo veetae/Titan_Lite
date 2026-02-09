@@ -3,7 +3,8 @@ _root = os.path.dirname(os.path.dirname(__file__))
 if _root not in sys.path:
     sys.path.insert(0, _root)
 from agents.lab_summary import fetch_lab_summary
-from agents.guideline_retriever import fetch_guidelines
+from agents.icd_coder import query_icd_codes
+# from agents.guideline_retriever import fetch_guidelines
 import logging
 
 logger = logging.getLogger("SOAPEnrich")
